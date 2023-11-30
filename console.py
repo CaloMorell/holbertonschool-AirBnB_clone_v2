@@ -113,9 +113,9 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, args):
+    def do_create(self, arg):
         """Create an object of any class with given parameters."""
-        args_list = args.split(" ")
+        args_list = arg.split(" ")
         class_name = args_list[0]
         if not class_name:
             print("** class name missing **")
@@ -128,26 +128,23 @@ class HBNBCommand(cmd.Cmd):
             key_value = param.split("=")
             if len(key_value) == 2:
                 key, value = key_value
-                # Replace underscores with spaces and
-                # remove quotes in string values
-                if value.startswith("\""):
-                    value = value.strip("\"").replace(
-                        "_", " ").replace("\\\"", "\"")
-                # Convert to the appropriate type (int, float, or string)
+                # Process value based on syntax rules
+                if value.startswith("\"") and value.endswith("\""):
+                    value = value[1:-1].replace("\\\"", "\"").replace("_", " ")
                 elif "." in value:
                     try:
                         value = float(value)
                     except ValueError:
-                        continue  # Skip if conversion fails
+                        continue
                 else:
                     try:
                         value = int(value)
                     except ValueError:
-                        continue  # Skip if conversion fails
+                        continue
                 setattr(new_instance, key, value)
         new_instance.save()
         print(new_instance.id)
-
+        
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
