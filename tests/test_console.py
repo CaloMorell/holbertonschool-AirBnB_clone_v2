@@ -1,4 +1,5 @@
 import unittest
+import sys  
 from io import StringIO
 from console import HBNBCommand
 from models.state import State
@@ -29,3 +30,4 @@ class TestHBNBCommandCreateWithParams(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
