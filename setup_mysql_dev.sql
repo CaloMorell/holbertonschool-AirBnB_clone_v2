@@ -2,7 +2,8 @@
 
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
 CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
+CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'your_password';
 GRANT ALL PRIVILEGES ON hbnb_dev_db.* TO 'hbnb_dev'@'localhost';
 GRANT SELECT ON performance_schema.* TO 'hbnb_dev'@'localhost';
-GRANT ALL PRIVILEGES ON *.* TO 'hbnb_test'@'localhost' IDENTIFIED BY '0000';
+GRANT ALL PRIVILEGES ON *.* TO 'hbnb_test'@'localhost';
 FLUSH PRIVILEGES;
