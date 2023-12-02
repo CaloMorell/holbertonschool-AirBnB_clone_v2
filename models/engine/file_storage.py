@@ -3,11 +3,11 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
-from models.place import Place
 from models.state import State
 from models.city import City
-from models.amenity import Amenity
 from models.review import Review
+from models.amenity import Amenity
+from models.place import Place
 
 
 class FileStorage:
@@ -16,7 +16,7 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        """Returns a dictionary of models currently in storage"""
+        """Returns a dictionary of models currently in a spesific class"""
         if cls is None:
             return FileStorage.__objects
         else:
@@ -59,10 +59,10 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """Deletes an object from __objects if it's inside"""
+        """Delete obj from __objects if it’s inside"""
         if obj is None:
             return
-        key = obj.__class__.__name__ + '.' + obj.id
+        key = f"{obj.__class__.__name__}.{obj.id}"
         if key in self.__objects:
             del self.__objects[key]
             self.save()
