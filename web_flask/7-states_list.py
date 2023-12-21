@@ -1,25 +1,24 @@
 #!/usr/bin/python3
-""" Starts a Flask web app """
-from flask import Flask, render_template
+
+""" This module starts a Flask web application """""
+from flask import Flask
+from flask import render_template
 from models import storage
 from models.state import State
-
+""" Flask class and render_template method"""""
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
 @app.teardown_appcontext
-def dispose(exception):
-    """ Remove current session """
+def teardown(self):
     storage.close()
 
 
 @app.route('/states_list')
-def states():
-    """ Display list of all the states """
+def states_list():
     states = storage.all(State)
-    states_list = list(states.values())
-    return render_template('7-states_list.html', states=states_list)
+    return render_template('7-states_list.html', states=states)
 
 
 if __name__ == '__main__':
