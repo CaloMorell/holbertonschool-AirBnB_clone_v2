@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Run an app with Flask web framework
+Este codigo crea una aplicacion web basica con Flask
 """
 from flask import Flask
 app = Flask(__name__)
